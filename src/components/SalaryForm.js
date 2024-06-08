@@ -102,7 +102,7 @@ const SalaryForm = () => {
         onClose={() => setIsPopupOpen(false)}
         onSubmit={editingEarningIndex !== null ? handleUpdateEarning : handleAddEarning}
         initialData={editingEarning}
-        buttonLabel={editingEarningIndex !== null ? "Update Earning" : "Add Earning"}
+        buttonLabel={editingEarningIndex !== null ? "Update" : "Add"}
       />
 
       <div className=' text-base font-bold mt-2'>Deductions</div>
@@ -125,7 +125,7 @@ const SalaryForm = () => {
         onClose={() => setIsPopupOpenDeduction(false)}
         onSubmit={editingDeductionIndex !== null ? handleUpdateDeduction : handleAddDeduction}
         initialData={editingDeduction}
-        buttonLabel={editingDeductionIndex !== null ? "Update Deduction" : "Add Deduction"}
+        buttonLabel={editingDeductionIndex !== null ? "Update" : "Add"}
       />
     </div>
   );
