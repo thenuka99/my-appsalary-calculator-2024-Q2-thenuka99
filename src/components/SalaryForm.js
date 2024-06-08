@@ -4,6 +4,9 @@ import { setBasicSalary, addEarning, updateEarning, deleteEarning, addDeduction,
 import Popup from './Popup';
 import add from '../assets/add.png';
 import reseticon from '../assets/reset.png';
+import done from '../assets/done.png';
+import clear from '../assets/clear.png';
+import edit from '../assets/edit.png'
 
 const SalaryForm = () => {
   const dispatch = useDispatch();
@@ -76,7 +79,7 @@ const SalaryForm = () => {
     <div className=' bg-[#FAFAFA] ml-32 mt-36 p-3 rounded-none border'>
       <div className=' flex justify-between mb-2'>
         <div className=' text-xl font-bold'>Calculate Your Salary</div>
-        <button onClick={handleReset} className=' text-theme-blue text-sm font-semibold flex'><img src={reseticon} width="24px" alt="add"/>Reset</button>
+        <button onClick={handleReset} className=' text-theme-blue text-sm font-semibold flex'><img src={reseticon} width="24px" alt="add" />Reset</button>
       </div>
 
       <div className=' text-base font-bold'>Basic Salary</div>
@@ -87,15 +90,30 @@ const SalaryForm = () => {
 
       <div>
         {earnings.map((earning, index) => (
-          <div key={index}>
-            <span>{earning.name}: {earning.value} (EPF: {earning.epf ? 'Yes' : 'No'})</span>
-            <button onClick={() => handleEditEarning(index)}>Edit</button>
-            <button onClick={() => handleDeleteEarning(index)}>Delete</button>
+          <div key={index} className='flex items-center space-x-2'>
+            <span className='text-base flex items-center'>
+              {earning.name}: {earning.value.toFixed(2)} 
+              {earning.epf && (
+                <>
+                  <img src={done} width="16px" className="ml-1" alt="done" />
+                  <span className='ml-1'>EPF/ETF</span>
+                </>
+              )}
+            </span>
+            <div className='flex items-center space-x-1'>
+              <button onClick={() => handleEditEarning(index)} className="p-1 rounded-full bg-gray-200 hover:bg-gray-300">
+                <img src={edit} width="16px" alt="edit" />
+              </button>
+              <div className="border-r border-gray-300 h-4"></div>
+              <button onClick={() => handleDeleteEarning(index)} className="p-1 rounded-full bg-gray-200 hover:bg-gray-300">
+                <img src={clear} width="16px" alt="delete" />
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
-      <button onClick={() => setIsPopupOpen(true)} className=' text-theme-blue text-sm font-semibold flex py-3'><img src={add} width="24px" alt="add"/>Add New Allowance</button>
+      <button onClick={() => setIsPopupOpen(true)} className=' text-theme-blue text-sm font-semibold flex py-3'><img src={add} width="24px" alt="add" />Add New Allowance</button>
 
       <Popup
         isOpen={isPopupOpen}
@@ -110,15 +128,30 @@ const SalaryForm = () => {
 
       <div>
         {deductions.map((deduction, index) => (
-          <div key={index}>
-            <span>{deduction.name}: {deduction.value} (EPF: {deduction.epf ? 'Yes' : 'No'})</span>
-            <button onClick={() => handleEditDeduction(index)}>Edit</button>
-            <button onClick={() => handleDeleteDeduction(index)}>Delete</button>
+          <div key={index} className='flex items-center space-x-2'>
+            <span className='text-base flex items-center'>
+              {deduction.name}: {deduction.value.toFixed(2)} 
+              {deduction.epf && (
+                <>
+                  <img src={done} width="16px" className="ml-1" alt="done" />
+                  <span className='ml-1'>EPF/ETF</span>
+                </>
+              )}
+            </span>
+            <div className='flex items-center space-x-1'>
+              <button onClick={() => handleEditDeduction(index)} className="p-1 rounded-full bg-gray-200 hover:bg-gray-300">
+                <img src={edit} width="16px" alt="edit" />
+              </button>
+              <div className="border-r border-gray-300 h-4"></div>
+              <button onClick={() => handleDeleteDeduction(index)} className="p-1 rounded-full bg-gray-200 hover:bg-gray-300">
+                <img src={clear} width="16px" alt="delete" />
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
-      <button onClick={() => setIsPopupOpenDeduction(true)} className=' text-theme-blue text-sm font-semibold flex py-3'><img src={add} width="24px" alt="add"/>Add New Deduction</button>
+      <button onClick={() => setIsPopupOpenDeduction(true)} className=' text-theme-blue text-sm font-semibold flex py-3'><img src={add} width="24px" alt="add" />Add New Deduction</button>
 
       <Popup
         isOpen={isPopupOpenDeduction}
