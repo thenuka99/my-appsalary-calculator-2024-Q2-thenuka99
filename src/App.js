@@ -7,7 +7,7 @@ import Result from './components/Result';
 const App = () => {
   return (
     <Provider store={store}>
-      <div>
+      <div className="grid grid-cols-2 gap-5">
         <SalaryForm />
         <Result />
       </div>
