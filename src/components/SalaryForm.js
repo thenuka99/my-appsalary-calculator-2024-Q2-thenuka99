@@ -6,7 +6,8 @@ import add from '../assets/add.png';
 import reseticon from '../assets/reset.png';
 import done from '../assets/done.png';
 import clear from '../assets/clear.png';
-import edit from '../assets/edit.png'
+import edit from '../assets/edit.png';
+import { formatNumber } from '../helpers/numberConverter';
 
 const SalaryForm = () => {
   const dispatch = useDispatch();
@@ -83,7 +84,7 @@ const SalaryForm = () => {
       </div>
 
       <div className=' text-base font-bold'>Basic Salary</div>
-      <input className=' border border-white-gray rounded bg-white py-3 px-4 h-12 w-96 ' type="number" value={basicSalary} onChange={handleBasicSalaryChange} />
+      <input className=' border border-white-gray rounded bg-white py-3 px-4 h-12 w-96 ' type="number" step="0.01" value={basicSalary} onChange={handleBasicSalaryChange} />
 
       <div className=' text-base font-bold mt-2'>Earnings</div>
       <div className=' text-xs text-secondary-txt'>Allowance, Fixed Allowance, Bonus and etc.</div>
@@ -92,7 +93,7 @@ const SalaryForm = () => {
         {earnings.map((earning, index) => (
           <div key={index} className='flex items-center space-x-2'>
             <span className='text-base flex items-center'>
-              {earning.name}: {earning.value.toFixed(2)} 
+              {earning.name}: {formatNumber(earning.value)} 
               {earning.epf && (
                 <>
                   <img src={done} width="16px" className="ml-1" alt="done" />
@@ -130,7 +131,7 @@ const SalaryForm = () => {
         {deductions.map((deduction, index) => (
           <div key={index} className='flex items-center space-x-2'>
             <span className='text-base flex items-center'>
-              {deduction.name}: {deduction.value.toFixed(2)} 
+              {deduction.name}: {formatNumber(deduction.value)} 
               {deduction.epf && (
                 <>
                   <img src={done} width="16px" className="ml-1" alt="done" />
